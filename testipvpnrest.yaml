@@ -1,0 +1,185 @@
+swagger: '2.0'
+info:
+  version: ''
+  title: ApigeeAPI
+  description: Test Apigee
+basePath: /testapigee/v1
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  '/IPVPN/{id}':
+    parameters:
+      - name: id
+        in: path
+        required: true
+        type: string
+    get:
+      operationId: GET-ipvpn
+      summary: Get IpVpn
+      tags:
+        - Ipvpns
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ipvpn-output'
+      x-stoplight:
+        id: GET-ipvpn
+        beforeScript: null
+        afterScript: null
+        public: true
+        mock:
+          enabled: false
+          dynamic: false
+          statusCode: 200
+    put:
+      operationId: PUT-ipvpn
+      summary: Update IpVpn
+      tags:
+        - Ipvpns
+      parameters:
+        - name: body
+          in: body
+          schema:
+            $ref: '#/definitions/ipvpn-input'
+      responses:
+        '200':
+          description: ''
+          schema:
+            $ref: '#/definitions/ipvpn-output'
+      x-stoplight:
+        id: PUT-ipvpn
+        beforeScript: null
+        afterScript: null
+        public: true
+        mock:
+          enabled: false
+          dynamic: false
+          statusCode: 200
+    delete:
+      operationId: DELETE-ipvpn
+      summary: Delete IpVpn
+      tags:
+        - Ipvpns
+      responses:
+        '204':
+          description: ''
+      x-stoplight:
+        id: DELETE-ipvpn
+        beforeScript: null
+        afterScript: null
+        public: true
+        mock:
+          enabled: false
+          dynamic: false
+          statusCode: 200
+  /IPVPN:
+    get:
+      operationId: LIST-ipvpns
+      summary: List Ipvpns
+      tags:
+        - Ipvpns
+      responses:
+        '200':
+          description: ''
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/ipvpn-output'
+      x-stoplight:
+        id: LIST-ipvpns
+        beforeScript: null
+        afterScript: null
+        public: true
+        mock:
+          enabled: false
+          dynamic: false
+          statusCode: 200
+    post:
+      operationId: POST-ipvpn
+      summary: Create IpVpn
+      tags:
+        - Ipvpns
+      parameters:
+        - name: body
+          in: body
+          schema:
+            $ref: '#/definitions/ipvpn-input'
+      responses:
+        '201':
+          description: ''
+          schema:
+            $ref: '#/definitions/ipvpn-output'
+      x-stoplight:
+        id: POST-ipvpn
+        beforeScript: null
+        afterScript: null
+        public: true
+        mock:
+          enabled: false
+          dynamic: false
+          statusCode: 200
+definitions:
+  ipvpn-input:
+    title: IpVpn Input
+    type: object
+    properties:
+      OrderId:
+        type: string
+      TechnicalVpnId:
+        type: string
+    required:
+      - OrderId
+    x-stoplight:
+      id: ipvpn-input
+      name: IpVpn Input
+      public: true
+  ipvpn-output:
+    title: IpVpn Output
+    allOf:
+      - type: object
+        properties:
+          IpVpnId:
+            type: string
+          TechnicalVpnId:
+            type: string
+      - $ref: '#/definitions/ipvpn-input'
+    x-stoplight:
+      id: ipvpn-output
+      name: IpVpn Output
+      public: true
+x-stoplight:
+  version:
+    groups:
+      docs:
+        - name: Ipvpns
+          divider: false
+          items:
+            - _id: GET-ipvpn
+              type: endpoints
+            - _id: LIST-ipvpns
+              type: endpoints
+            - _id: PUT-ipvpn
+              type: endpoints
+            - _id: POST-ipvpn
+              type: endpoints
+            - _id: DELETE-ipvpn
+              type: endpoints
+        - name: Models
+          divider: false
+          items:
+            - _id: ipvpn-input
+              type: schemas
+            - _id: ipvpn-output
+              type: schemas
+      traits: []
+      tests: []
+      savedEntries: []
+  functions: {}
+  textSections: {}
+  mock:
+    enabled: false
+    dynamic: false
+x-tests: {}
